@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-14 14:29:26 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Workbill" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="workbill">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="uuid"/>
+        </id>
+        <many-to-one class="cn.zzrfdsn.bos1.model.Noticebill" lazy="false" embed-xml="true" fetch="select" insert="true" name="noticebill" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="noticebill_id"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="type" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="type"/>
+        </property>
+        <property generated="never" lazy="false" name="pickstate" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="pickstate"/>
+        </property>
+        <property generated="never" lazy="false" name="buildtime" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="buildtime" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="attachbilltimes" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="attachbilltimes"/>
+        </property>
+        <property generated="never" lazy="false" name="remark" optimistic-lock="true" type="string" unique="false">
+            <column name="remark"/>
+        </property>
+       <many-to-one class="cn.zzrfdsn.bos1.model.Staff" lazy="false" embed-xml="true" fetch="select" insert="true" name="staff" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="staff_id"/>
+       </many-to-one>
+    </class>
+</hibernate-mapping>

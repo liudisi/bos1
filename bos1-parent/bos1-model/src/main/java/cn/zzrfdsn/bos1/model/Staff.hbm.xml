@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-7 18:16:06 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Staff" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="staff">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="uuid"/>
+        </id>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="name"/>
+        </property>
+        <property generated="never" lazy="false" name="telephone" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="telephone"/>
+        </property>
+        <property generated="never" lazy="false" name="haspda" optimistic-lock="true" type="java.lang.Character" unique="false">
+            <column length="1" name="haspda"/>
+        </property>
+        <property generated="never" lazy="false" name="deltag" optimistic-lock="true" type="java.lang.Character" unique="false">
+            <column length="1" name="deltag"/>
+        </property>
+        <property generated="never" lazy="false" name="station" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="station"/>
+        </property>
+        <property generated="never" lazy="false" name="standard" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="standard"/>
+        </property>
+         <property generated="never" lazy="false" name="isreal" optimistic-lock="true" type="integer" unique="false">
+            <column length="1" name="isreal"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="decidedzones" optimistic-lock="true" sort="unsorted" table="decidedzone">
+            <key on-delete="noaction">
+                <column length="32" name="staff_id"/>
+            </key>
+            <one-to-many class="cn.zzrfdsn.bos1.model.Decidedzone" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+    
+    <query name="staff.delete">
+    	UPDATE Staff set deltag='1' WHERE id=?
+    </query>
+    
+    <query name="staff.restore">
+    	UPDATE Staff set deltag='0' WHERE id=?
+    </query>
+</hibernate-mapping>

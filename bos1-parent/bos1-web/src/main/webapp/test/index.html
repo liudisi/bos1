@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+.bar {
+	height: 18px;
+	background: green;
+}
+</style>
+</head>
+<body>
+	<input id="upload" type="file" name="subareas">
+	<div id="progress">
+		<div class="bar" style="width: 0%;"></div>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://cdn.bootcss.com/blueimp-file-upload/10.1.0/js/vendor/jquery.ui.widget.js"></script>
+	<script
+		src="https://cdn.bootcss.com/blueimp-file-upload/10.1.0/js/jquery.iframe-transport.min.js"></script>
+	<script
+		src="https://cdn.bootcss.com/blueimp-file-upload/10.1.0/js/jquery.fileupload.min.js"></script>
+	<script src="https://cdn.bootcss.com/blueimp-file-upload/10.2.0/js/jquery.fileupload-process.js"></script>
+	<script src="https://cdn.bootcss.com/blueimp-file-upload/10.2.0/js/jquery.fileupload-validate.min.js"></script>
+	
+	<script>
+		$(function() {
+			$('#upload').fileupload({
+						url : 'http://localhost/bos1-web/subarea/batchImport',
+						dataType : 'json',
+						done : function(e, data) {
+							console.log(e);
+							console.log(data);
+							$.each(data.result.files, function(index, file) {
+								$('<p/>').text(file.name).appendTo(
+										document.body);
+							});
+							
+						},
+						add: function (e, data) {
+				           console.log(data);
+				           console.log(e);
+				          /*  data.submit(); */
+				        },
+						progressall : function(e, data) {
+							var progress = parseInt(data.loaded / data.total
+									* 100, 10);
+							$('#progress .bar').css('width', progress + '%');
+						}
+					});
+		});
+	</script>
+</body>
+</html>

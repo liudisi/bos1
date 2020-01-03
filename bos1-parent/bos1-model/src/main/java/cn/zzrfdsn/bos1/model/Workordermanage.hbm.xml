@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-14 14:29:26 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Workordermanage" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="workordermanage">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="arrivecity" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="arrivecity"/>
+        </property>
+        <property generated="never" lazy="false" name="product" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="product"/>
+        </property>
+        <property generated="never" lazy="false" name="num" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="num"/>
+        </property>
+        <property generated="never" lazy="false" name="weight" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="weight" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="floadreqr" optimistic-lock="true" type="string" unique="false">
+            <column name="floadreqr"/>
+        </property>
+        <property generated="never" lazy="false" name="prodtimelimit" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="prodtimelimit"/>
+        </property>
+        <property generated="never" lazy="false" name="prodtype" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="prodtype"/>
+        </property>
+        <property generated="never" lazy="false" name="sendername" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="sendername"/>
+        </property>
+        <property generated="never" lazy="false" name="senderphone" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="senderphone"/>
+        </property>
+        <property generated="never" lazy="false" name="senderaddr" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="senderaddr"/>
+        </property>
+        <property generated="never" lazy="false" name="receivername" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="receivername"/>
+        </property>
+        <property generated="never" lazy="false" name="receiverphone" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="receiverphone"/>
+        </property>
+        <property generated="never" lazy="false" name="receiveraddr" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="receiveraddr"/>
+        </property>
+        <property generated="never" lazy="false" name="feeitemnum" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="feeitemnum"/>
+        </property>
+        <property generated="never" lazy="false" name="actlweit" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="actlweit" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="vol" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="vol"/>
+        </property>
+        <property generated="never" lazy="false" name="managerCheck" optimistic-lock="true" type="string" unique="false">
+            <column length="1" name="managerCheck"/>
+        </property>
+        <property generated="never" lazy="false" name="updatetime" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="updatetime"/>
+        </property>
+    </class>
+</hibernate-mapping>

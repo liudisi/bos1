@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-7 18:16:06 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Subarea" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="subarea">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <!-- 关联查询转为json关闭懒加载 -->
+        <many-to-one class="cn.zzrfdsn.bos1.model.Decidedzone" embed-xml="true" fetch="select" insert="true" name="decidedzone" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="decidedzone_id"/>
+        </many-to-one>
+        <many-to-one class="cn.zzrfdsn.bos1.model.Region" lazy="false" embed-xml="true" fetch="select" insert="true" name="region" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="region_id"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="addresskey" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="addresskey"/>
+        </property>
+        <property generated="never" lazy="false" name="startnum" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="startnum"/>
+        </property>
+        <property generated="never" lazy="false" name="endnum" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="endnum"/>
+        </property>
+        <property generated="never" lazy="false" name="single" optimistic-lock="true" type="java.lang.Character" unique="false">
+            <column length="1" name="single"/>
+        </property>
+        <property generated="never" lazy="false" name="position" optimistic-lock="true" type="string" unique="false">
+            <column name="position"/>
+        </property>
+    </class>
+</hibernate-mapping>

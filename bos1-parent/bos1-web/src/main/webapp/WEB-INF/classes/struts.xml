@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- <constant name="struts.devMode" value="true" /> -->
+	<!-- <constant name="struts.objectFactory" value="spring"/> -->
+	<!-- 10M -->
+	<constant name= "struts.multipart.maxSize" value="10485760" />
+
+	<package name="globalPackage" extends="struts-default"
+		abstract="true">
+		<!-- 捕获shiro权限验证不通过异常 -->
+		<global-results>
+			<result name="unauthorized" type="chain">
+				<param name="actionName">unauthorized</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="authenticationFailed">/authenticationFailed.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="unauthorized"
+				exception="org.apache.shiro.authz.UnauthorizedException" />
+		</global-exception-mappings>
+	</package>
+
+
+	<!-- 页面 -->
+	<package namespace="/" name="page" extends="globalPackage">
+		<!-- 需要进行权限控制的页面访问 -->
+		<action name="page_*_*">
+			<result type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+		<action name="unauthorized" class="unauthorizedAction"
+			method="execute">
+		</action>
+	</package>
+	<!-- 员工 -->
+	<package namespace="/user" name="user" extends="globalPackage">
+		<action name="*" class="userAction" method="{1}">
+			<result name="login">/login.jsp</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">page_common_index</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+	</package>
+	<!-- 收派员 -->
+
+	<package name="staff" namespace="/staff"
+		extends="globalPackage">
+		<action name="*" class="staffAction" method="{1}">
+			<result name="list" type="redirectAction">
+				<param name="actionName">page_base_staff</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 区域 -->
+	<package name="region" namespace="/region"
+		extends="globalPackage">
+		<action name="*" class="regionAction" method="{1}">
+
+		</action>
+	</package>
+
+	<!-- 分区 -->
+	<package name="subarea" namespace="/subarea"
+		extends="globalPackage">
+		<action name="*" class="subareaAction" method="{1}">
+			<result name="list" type="redirectAction">
+				<param name="actionName">page_base_subarea</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+	<!-- 定区 -->
+	<package name="decidedzone" namespace="/decidedzone"
+		extends="globalPackage">
+		<action name="*" class="decidedzoneAction" method="{1}">
+			<result name="list" type="redirectAction">
+				<param name="actionName">page_base_decidedzone</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 业务受理 -->
+	<package name="noticebill" namespace="/noticebill"
+		extends="globalPackage">
+		<action name="*" class="noticebillAction" method="{1}">
+			<result name="add" type="redirectAction">
+				<param name="actionName">page_qupai_noticebill_add</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 权限管理 -->
+	<package name="permit" namespace="/permit"
+		extends="globalPackage">
+		<action name="*" class="permitAction" method="{1}">
+		</action>
+	</package>
+	<!-- 角色管理 -->
+	<package name="role" namespace="/role"
+		extends="globalPackage">
+		<action name="*" class="roleAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- 工单 -->
+	<package name="workbill" namespace="/workbill"
+		extends="globalPackage">
+		<action name="*" class="workBillAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- 快递单 -->
+	<package name="workordermanage" namespace="/workordermanage"
+		extends="globalPackage">
+		<action name="*" class="workordermanageAction" method="{1}">
+		</action>
+	</package>
+</struts>

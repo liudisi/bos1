@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-14 14:29:26 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Noticebill" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="noticebill">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="uuid"/>
+        </id>
+         <many-to-one class="cn.zzrfdsn.bos1.model.Staff" lazy="false" embed-xml="true" fetch="select" insert="true" name="staff" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="staff_id"/>
+       </many-to-one>
+        <property generated="never" lazy="false" name="customerId" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="customer_id"/>
+        </property>
+        <property generated="never" lazy="false" name="customerName" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="customer_name"/>
+        </property>
+        <property generated="never" lazy="false" name="delegater" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="delegater"/>
+        </property>
+        <property generated="never" lazy="false" name="telephone" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="telephone"/>
+        </property>
+        <property generated="never" lazy="false" name="pickaddress" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="pickaddress"/>
+        </property>
+        <property generated="never" lazy="false" name="arrivecity" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="arrivecity"/>
+        </property>
+        <property generated="never" lazy="false" name="product" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="product"/>
+        </property>
+        <property generated="never" lazy="false" name="pickdate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="pickdate"/>
+        </property>
+        <property generated="never" lazy="false" name="num" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="num"/>
+        </property>
+        <property generated="never" lazy="false" name="weight" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="weight" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="volume" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="volume"/>
+        </property>
+        <property generated="never" lazy="false" name="remark" optimistic-lock="true" type="string" unique="false">
+            <column name="remark"/>
+        </property>
+        <property generated="never" lazy="false" name="ordertype" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="ordertype"/>
+        </property>
+        <property generated="never" lazy="false" name="userId" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="user_id"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="workbills" optimistic-lock="true" sort="unsorted" table="workbill">
+            <key on-delete="noaction">
+                <column length="32" name="noticebill_id"/>
+            </key>
+            <one-to-many class="cn.zzrfdsn.bos1.model.Workbill" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

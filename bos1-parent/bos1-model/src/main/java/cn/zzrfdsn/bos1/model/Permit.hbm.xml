@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-18 14:23:27 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Permit" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="permit">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="uuid"/>
+        </id>
+        <many-to-one class="cn.zzrfdsn.bos1.model.Permit" embed-xml="true" fetch="select" insert="true" name="parentPermit" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="pid"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column name="name"/>
+        </property>
+        <property generated="never" lazy="false" name="code" optimistic-lock="true" type="string" unique="false">
+            <column name="code"/>
+        </property>
+        <property generated="never" lazy="false" name="description" optimistic-lock="true" type="string" unique="false">
+            <column name="description"/>
+        </property>
+        <property generated="never" lazy="false" name="page" optimistic-lock="true" type="string" unique="false">
+            <column name="page"/>
+        </property>
+        <property generated="never" lazy="false" name="generatemenu" optimistic-lock="true" type="string" unique="false">
+            <column name="generatemenu"/>
+        </property>
+        <property generated="never" lazy="false" name="zindex" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="zindex"/>
+        </property>
+        <property generated="never" lazy="false" name="menugroup" optimistic-lock="true" type="string" unique="false" not-null="true">
+            <column name="menugroup"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="roles" optimistic-lock="true" sort="unsorted" table="role_permit">
+            <key on-delete="noaction">
+                <column length="32" name="permit_id" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="cn.zzrfdsn.bos1.model.Role" not-found="exception" unique="false">
+                <column length="32" name="role_id" not-null="true"/>
+            </many-to-many>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="false" mutable="true" name="subPermits" optimistic-lock="true" sort="unsorted" table="permit">
+            <key on-delete="noaction">
+                <column length="32" name="pid"/>
+            </key>
+            <one-to-many class="cn.zzrfdsn.bos1.model.Permit" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

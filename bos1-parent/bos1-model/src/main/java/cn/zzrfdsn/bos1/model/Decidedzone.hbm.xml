@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-7 18:16:06 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Decidedzone" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="decidedzone">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="cn.zzrfdsn.bos1.model.Staff" embed-xml="true" lazy="false" fetch="select" insert="true" name="staff" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="32" name="staff_id"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="name"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="subareas" optimistic-lock="true" sort="unsorted" table="subarea">
+            <key on-delete="noaction">
+                <column length="32" name="decidedzone_id"/>
+            </key>
+            <one-to-many class="cn.zzrfdsn.bos1.model.Subarea" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

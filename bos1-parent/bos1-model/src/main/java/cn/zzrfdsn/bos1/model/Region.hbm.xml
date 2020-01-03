@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2019-8-7 18:16:06 by Hibernate Tools 5.0.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="cn.zzrfdsn.bos1.model.Region" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="region">
+        <id name="id" type="string">
+            <column length="32" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="province" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="province"/>
+        </property>
+        <property generated="never" lazy="false" name="city" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="city"/>
+        </property>
+        <property generated="never" lazy="false" name="district" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="district"/>
+        </property>
+        <property generated="never" lazy="false" name="postcode" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="postcode"/>
+        </property>
+        <property generated="never" lazy="false" name="shortcode" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="shortcode"/>
+        </property>
+        <property generated="never" lazy="false" name="citycode" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="citycode"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="subareas" optimistic-lock="true" sort="unsorted" table="subarea">
+            <key on-delete="noaction">
+                <column length="32" name="region_id"/>
+            </key>
+            <one-to-many class="cn.zzrfdsn.bos1.model.Subarea" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

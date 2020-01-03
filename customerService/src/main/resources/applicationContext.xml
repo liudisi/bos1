@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
+		
+		<context:property-placeholder location="classpath:db.properties"/>
+		<context:component-scan base-package="cn.zzrfdsn.customerService" />
+		<context:annotation-config/>
+		<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="${jdbc.driverClass}"/>
+			<property name="url" value="${jdbc.jdbcUrl}"/>
+			<property name="username" value="${jdbc.user}"/>
+			<property name="password" value="${jdbc.password}"/>
+		</bean>
+	
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<jaxws:server name="customerWebService" address="/customerService">
+		<jaxws:serviceBean>
+			<ref bean="customerService"/>
+		</jaxws:serviceBean>
+	</jaxws:server>
+</beans>
